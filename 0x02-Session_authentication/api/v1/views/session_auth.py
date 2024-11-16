@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 """Module of session authenticating views.
 """
@@ -36,6 +35,7 @@ def login() -> Tuple[str, int]:
         res.set_cookie(os.getenv("SESSION_NAME"), sessiond_id)
         return res
     return jsonify({"error": "wrong password"}), 401
+
 
 @app_views.route(
     '/auth_session/logout', methods=['DELETE'], strict_slashes=False)

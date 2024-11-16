@@ -32,6 +32,7 @@ if auth_type == 'session_exp_auth':
 if auth_type == 'session_db_auth':
     auth = SessionDBAuth()
 
+
 @app.errorhandler(401)
 def unauthorized(error) -> str:
     """ Unauthorized handler
@@ -66,7 +67,7 @@ def authenticate_user():
         if auth.require_auth(request.path, excluded_paths):
             user = auth.current_user(request)
             if auth.authorization_header(request) is None and \
-                auth.session_cookie(request) is None:
+                    auth.session_cookie(request) is None:
                 abort(401)
             if user is None:
                 abort(403)
